@@ -4,4 +4,5 @@ branches:
 projects:
   CellPE:
     path: ""
+    icon: icon.png
 ...

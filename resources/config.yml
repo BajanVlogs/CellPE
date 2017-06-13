@@ -1,0 +1,15 @@
+---
+# The default price in case you don't set the price of a cell
+default.price: 5000
+# If true, every cell will be expired after the specified days
+enable.expire: true
+# The days left before a cell gets deleted
+expire.days: 7
+# The days that will be added if players upgrade their cells
+upgrade.days: 7
+# The amount of money given if players sell their cells
+sell.percent: 45
+# The amount of money paid if players upgrade their cells
+upgrade.percent: 45
+# If false, it will knockback players when they try to get in to others cells
+allow.movement.other.cell: false

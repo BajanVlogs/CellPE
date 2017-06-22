@@ -13,18 +13,18 @@ use pocketmine\command\Command;
 use pocketmine\command\CommandExecutor;
 use pocketmine\command\CommandSender;
 
-use Vaivez66\CellPE\CellPE;
-use Vaivez66\CellPE\commands\subcommands\AddHelperSub;
-use Vaivez66\CellPE\commands\subcommands\AdminSub;
-use Vaivez66\CellPE\commands\subcommands\BuySub;
-use Vaivez66\CellPE\commands\subcommands\CheckSub;
-use Vaivez66\CellPE\commands\subcommands\DeleteSub;
-use Vaivez66\CellPE\commands\subcommands\RemoveHelperSub;
-use Vaivez66\CellPE\commands\subcommands\SellSub;
-use Vaivez66\CellPE\commands\subcommands\SetSub;
-use Vaivez66\CellPE\commands\subcommands\SubCommand;
-use Vaivez66\CellPE\commands\subcommands\TeleportSub;
-use Vaivez66\CellPE\commands\subcommands\UpgradeSub;
+use Bajan\CellPE\CellPE;
+use Bajan\CellPE\commands\subcommands\AddHelperSub;
+use Bajan\CellPE\commands\subcommands\AdminSub;
+use Bajan\CellPE\commands\subcommands\BuySub;
+use Bajan\CellPE\commands\subcommands\CheckSub;
+use Bajan\CellPE\commands\subcommands\DeleteSub;
+use Bajan\CellPE\commands\subcommands\RemoveHelperSub;
+use Bajan\CellPE\commands\subcommands\SellSub;
+use Bajan\CellPE\commands\subcommands\SetSub;
+use Bajan\CellPE\commands\subcommands\SubCommand;
+use Bajan\CellPE\commands\subcommands\TeleportSub;
+use Bajan\CellPE\commands\subcommands\UpgradeSub;
 
 class MainCommand implements CommandExecutor{
 

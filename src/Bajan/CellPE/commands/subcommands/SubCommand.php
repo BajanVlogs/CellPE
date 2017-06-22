@@ -11,7 +11,7 @@ namespace Bajan\CellPE\commands\subcommands;
 use pocketmine\Player;
 use pocketmine\command\CommandSender;
 
-use Vaivez66\CellPE\CellPE;
+use Bajan\CellPE\CellPE;
 
 abstract class SubCommand{
 

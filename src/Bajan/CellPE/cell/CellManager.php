@@ -11,7 +11,7 @@ namespace Bajan\CellPE\cell;
 use pocketmine\Player;
 use pocketmine\level\Position;
 
-use Vaivez66\CellPE\CellPE;
+use Bajan\CellPE\CellPE;
 
 class CellManager{
 

@@ -10,7 +10,7 @@ namespace Bajan\CellPE\task;
 
 use pocketmine\scheduler\PluginTask;
 
-use Vaivez66\CellPE\CellPE;
+use Bajan\CellPE\CellPE;
 
 class ExpireTask extends PluginTask{
 

@@ -11,11 +11,11 @@ namespace Bajan\CellPE;
 use pocketmine\plugin\PluginBase;
 use pocketmine\utils\Config;
 
-use Vaivez66\CellPE\cell\CellManager;
-use Vaivez66\CellPE\commands\MainCommand;
-use Vaivez66\CellPE\listener\EventListener;
-use Vaivez66\CellPE\task\ExpireTask;
-use Vaivez66\CellPE\utils\Format;
+use Bajan\CellPE\cell\CellManager;
+use Bajan\CellPE\commands\MainCommand;
+use Bajan\CellPE\listener\EventListener;
+use Bajan\CellPE\task\ExpireTask;
+use Bajan\CellPE\utils\Format;
 
 use onebone\economyapi\EconomyAPI;
 

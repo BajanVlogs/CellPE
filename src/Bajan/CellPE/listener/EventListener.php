@@ -15,7 +15,7 @@ use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\level\Position;
 
-use Vaivez66\CellPE\CellPE;
+use Bajan\CellPE\CellPE;
 
 class EventListener implements Listener{
 

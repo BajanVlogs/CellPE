@@ -1,6 +1,6 @@
 <?php
 
-namespace Bajan\CellPE;
+namespace Bajan\CellPE\guards;
 
 use pocketmine\entity\Living;
 use pocketmine\math\Vector3;

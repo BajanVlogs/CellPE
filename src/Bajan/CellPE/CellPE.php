@@ -16,7 +16,6 @@ use Bajan\CellPE\commands\MainCommand;
 use Bajan\CellPE\listener\EventListener;
 use Bajan\CellPE\task\ExpireTask;
 use Bajan\CellPE\utils\Format;
-use Bajan\CellPE\guards\BaseEntity;
 
 use onebone\economyapi\EconomyAPI;
 

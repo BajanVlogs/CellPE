@@ -1,7 +1,7 @@
 name: CellPE
 main: Bajan\CellPE\CellPE
 version: 1.0.0
-api: [3.0.0-ALPHA5, 3.0.0-ALPHA6]
+api: [3.0.0-ALPHA5, 3.0.0-ALPHA6, 3.0.0-ALPHA7]
 load: POSTWORLD
 authors: [Bajan]
 description: 'Cell plugin for PocketMine'

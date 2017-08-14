@@ -14,7 +14,6 @@ use pocketmine\event\block\BlockPlaceEvent;
 use pocketmine\event\player\PlayerInteractEvent;
 use pocketmine\event\player\PlayerMoveEvent;
 use pocketmine\level\Position;
-use pocketmine\level\PlayerJoinEvent:
 
 use Bajan\CellPE\CellPE;
 

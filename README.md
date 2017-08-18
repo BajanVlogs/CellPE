@@ -11,4 +11,4 @@ Required plugin(s):
 • EconomyAPI by onebone (https://github.com/onebone/EconomyS/tree/master/EconomyAPI)
 
 
-CellPE: is a Plugin in with player can buy and raid other players cells. You can customize the cell and protect it form getting raided by other players. The way to get into a cell is to break the door and defeat the person protects like garuds then you will be able to raid the cell.
+CellPE: is a Plugin in with player can buy and raid other players cells. You can customize the cell and protect it form getting raided by other players. The way to get into a cell is to break the door and defeat the person protects like guards then you will be able to raid the cell.

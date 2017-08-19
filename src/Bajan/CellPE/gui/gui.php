@@ -1,6 +1,6 @@
 <?php
 
-namespace Bajan\CellPE\Gui;
+namespace Bajan\CellPE\gui;
 
 use pocketmine\block\Block;
 use pocketmine\command\Command;
@@ -63,7 +63,7 @@ class Main extends PluginBase implements Listener{
       switch(strtolower($cmd->getName())){
 		  
 		case "crate":
-          $sender->sendMessage("§l§cTheVortex §7»»§f§r §7CrateB Menu Opened!");
+          $sender->sendMessage("§l§6CellPE Command Menu");
           $this->sendChestInventory($sender);
 		  return true;
         break;

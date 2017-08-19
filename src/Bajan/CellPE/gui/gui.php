@@ -1,4 +1,4 @@
-<?php
+}<?php
 
 namespace Bajan\CellPE\gui;
 
@@ -40,7 +40,7 @@ class CellPE{
       new IntTag("x", floor($player->x)),
       new IntTag("y", floor($player->y) - 2),
       new IntTag("z", floor($player->z))
-    ]);
+    });
     $nbt->Items->setTagType(NBT::TAG_Compound);
     $tile = Tile::createTile("Chest", $player->getLevel()->getChunk($player->getX() >> 4, $player->getZ() >> 4), $nbt);
     /* Items */
@@ -54,8 +54,8 @@ class CellPE{
         foreach($e->getTransaction()->getTransactions() as $t) {
             if($t->getInventory() instanceof ChestInventory) {
                 $e->setCancelled(true);
-            ]
-        ]
+	    }
+	}
   }
 
   public function onCommand(CommandSender $sender, Command $cmd, $label, array $args){

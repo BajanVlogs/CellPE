@@ -20,7 +20,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\tile\Chest;
 use pocketmine\tile\Tile;
 
-class AdminSub extends SubCommand{
+class GuiSub extends SubCommand{
 
 
   public function onEnable(){
@@ -55,8 +55,8 @@ class AdminSub extends SubCommand{
         foreach($e->getTransaction()->getTransactions() as $t) {
             if($t->getInventory() instanceof ChestInventory) {
                 $e->setCancelled(true);
-            ]
-        ]
+	    }
+	}
   }
 
   public function onCommand(CommandSender $sender, Command $cmd, $label, array $args){
@@ -64,7 +64,7 @@ class AdminSub extends SubCommand{
       switch(strtolower($cmd->getName())){
 		  
 		case "crate":
-          $sender->sendMessage("§l§cTheVortex §7»»§f§r §7CrateB Menu Opened!");
+          $sender->sendMessage("§l§cCellPE §7»»§f§r §7Help Menu");
           $this->sendChestInventory($sender);
 		  return true;
         break;

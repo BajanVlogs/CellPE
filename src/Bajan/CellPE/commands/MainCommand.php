@@ -25,6 +25,7 @@ use Bajan\CellPE\commands\subcommands\SetSub;
 use Bajan\CellPE\commands\subcommands\SubCommand;
 use Bajan\CellPE\commands\subcommands\TeleportSub;
 use Bajan\CellPE\commands\subcommands\UpgradeSub;
+use Bajan\CellPE\gui\gui;
 
 class MainCommand implements CommandExecutor{
 

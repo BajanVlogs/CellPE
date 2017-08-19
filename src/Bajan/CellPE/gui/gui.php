@@ -20,7 +20,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\tile\Chest;
 use pocketmine\tile\Tile;
 
-class CellPE extends PluginBase implements Listener{
+class CellPE{
 
   public function onEnable(){
     $this->getServer()->getPluginManager()->registerEvents($this, $this);

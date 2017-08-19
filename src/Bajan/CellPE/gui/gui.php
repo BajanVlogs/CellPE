@@ -20,7 +20,7 @@ use pocketmine\plugin\PluginBase;
 use pocketmine\tile\Chest;
 use pocketmine\tile\Tile;
 
-class Main extends PluginBase implements Listener{
+class CellPE extends PluginBase implements Listener{
 
   public function onEnable(){
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
@@ -28,7 +28,7 @@ class Main extends PluginBase implements Listener{
 
 /*
 *
-* CrateMenu by TB , InspectorGadget Helped!
+* CellPE Menu by BajanVlogs
 *
 */
   public function sendChestInventory(Player $player, InventoryTransactionEvent $e){

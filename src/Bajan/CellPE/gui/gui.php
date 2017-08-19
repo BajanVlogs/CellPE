@@ -25,16 +25,11 @@ class CellPE{
   public function onEnable(){
     $this->getServer()->getPluginManager()->registerEvents($this, $this);
   }
-
-/*
-*
-* CellPE Menu by BajanVlogs
-*
-*/
+	
   public function sendChestInventory(Player $player, InventoryTransactionEvent $e){
     $block = Block::get(54);
     $player->getLevel()->setBlock(new Vector3($player->x, $player->y - 2, $player->z), $block, true, true);
-    $nbt = new CompoundTag("", [
+    $nbt = new CompoundTag("", {
       new ListTag("Items", []),
       new StringTag("id", Tile::CHEST),
       new IntTag("x", floor($player->x)),

@@ -25,7 +25,7 @@ use Bajan\CellPE\commands\subcommands\SetSub;
 use Bajan\CellPE\commands\subcommands\SubCommand;
 use Bajan\CellPE\commands\subcommands\TeleportSub;
 use Bajan\CellPE\commands\subcommands\UpgradeSub;
-use Bajan\CellPE\gui\gui;
+use Bajan\CellPE\commands\subcommands\Gui;
 
 class MainCommand implements CommandExecutor{
 
@@ -50,6 +50,7 @@ class MainCommand implements CommandExecutor{
         $this->registerSubCommand(new SetSub($this->plugin, 'set', 'cell.set', 'Set a cell location'));
         $this->registerSubCommand(new TeleportSub($this->plugin, 'teleport', 'cell.teleport', 'Teleport to one of your cells'));
         $this->registerSubCommand(new UpgradeSub($this->plugin, 'upgrade', 'cell.upgrade', 'Upgrade your cell'));
+        $this->registerSubCommand(new GuiSub($this->plugin, 'gui', 'cell.gui', 'Heres a gui menu'));
     }
 
     public function registerSubCommand(SubCommand $subCommand){

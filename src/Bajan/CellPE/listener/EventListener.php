@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ASUS
- * Date: 22/09/2016
- * Time: 14:58
- */
 
 namespace Bajan\CellPE\listener;
 

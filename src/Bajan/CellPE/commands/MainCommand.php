@@ -61,7 +61,7 @@ class MainCommand implements CommandExecutor{
         }
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, $label, array $args){
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool{
         switch ($cmd->getName()) {
             case 'cell':
                 if (!$sender instanceof Player) {

@@ -1,5 +1,5 @@
 ---
-cell.in.game: "{GRAY}+> {RED}Please run this command in game"
+cell.in.game: "{BLUE}+> {RED}Please run this command in game"
 cell.help.header: "{GOLD}------[{GRAY}Cell Subcommands{GOLD}]------"
 cell.help: "{GOLD}- /cell {sub}: {GRAY}{desc}"
 

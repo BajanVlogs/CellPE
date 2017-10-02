@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: ASUS
- * Date: 22/09/2016
- * Time: 14:16
- */
 
 namespace Bajan\CellPE\utils;
 

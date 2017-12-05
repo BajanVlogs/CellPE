@@ -61,25 +61,25 @@ class MainCommand implements CommandExecutor{
         }
     }
 
-    public function onCommand(CommandSender $sender, Command $cmd, $label, array $args){
+    public function onCommand(CommandSender $sender, Command $cmd, string $label, array $args) : bool {
         switch ($cmd->getName()) {
             case 'cell':
                 if (!$sender instanceof Player) {
                     $sender->sendMessage($this->plugin->getMessage('cell.in.game'));
-                    return;
+                    return true;
                 }
                 if (!isset($args[0])) {
                     $this->sendHelp($sender);
-                    return;
+                    return true;
                 }
                 if (!isset($this->subCommands[$args[0]])) {
                     $this->sendHelp($sender);
-                    return;
+                    return true;
                 }
                 $subCommand = $this->subCommands[$args[0]];
                 if ($subCommand->isAllowed($sender) === false) {
                     $sender->sendMessage($this->plugin->getMessage('cell.' . $subCommand->getName() . '.no.permission'));
-                    return;
+                    return true;
                 }
                 $subCommand->execute($sender, $args);
                 break;

@@ -1,6 +1,5 @@
 # CellPE
-For MCPE Prison Servers Enjoy!
-[![Poggit-CI](https://poggit.pmmp.io/ci.badge/BajanVlogs/CellPE/CellPE)](https://poggit.pmmp.io/ci.badge/BajanVlogs/CellPE/CellPE)
+MCPE Cells Plugin for prison servers
 
 [https://poggit.pmmp.io/ci/BajanVlogs/CellPE/CellPE]
 

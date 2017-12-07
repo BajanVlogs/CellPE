@@ -8,7 +8,7 @@ expire.days: 10
 # The days that will be added if players upgrade their cells
 upgrade.days: 10
 # The amount of money given if players sell their cells
-sell.percent: 55
+sell.percent: 50
 # The amount of money paid if players upgrade their cells
 upgrade.percent: 40
 # If false, it will knockback players when they try to get in to others cells

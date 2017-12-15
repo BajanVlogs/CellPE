@@ -84,6 +84,7 @@ class MainCommand implements CommandExecutor{
                 $subCommand->execute($sender, $args);
                 break;
         }
+      return true;
     }
 
 }

@@ -3,7 +3,7 @@ main: Bajan\CellPE\CellPE
 version: 2.0.3
 api: 3.0.0
 load: POSTWORLD
-authors: Bajan, Vaivez66
+authors: Bajan
 description: 'Cell plugin for PocketMine'
 commands:
   cell:

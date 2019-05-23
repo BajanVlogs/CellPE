@@ -5,6 +5,7 @@ namespace Bajan\CellPE\task;
 use pocketmine\scheduler\PluginTask;
 
 use Bajan\CellPE\CellPE;
+use pocketmine\scheduler\ExpireTask;
 
 class ExpireTask extends PluginTask{
 

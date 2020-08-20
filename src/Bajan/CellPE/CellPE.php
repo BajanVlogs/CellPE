@@ -11,6 +11,9 @@ use Bajan\CellPE\listener\EventListener;
 use Bajan\CellPE\task\ExpireTask;
 use Bajan\CellPE\utils\Format;
 
+use DateTime;
+use DateTimeZone;
+
 use onebone\economyapi\EconomyAPI;
 
 class CellPE extends PluginBase{
@@ -61,7 +64,7 @@ class CellPE extends PluginBase{
 
     public function createTask(){
         $a = new ExpireTask($this);
-        $b = $this->getServer()->getScheduler()->scheduleRepeatingTask($a, 72000);
+        $b = $this->getScheduler()->scheduleRepeatingTask($a, 72000);
         $a->setHandler($b);
     }
 
@@ -73,7 +76,7 @@ class CellPE extends PluginBase{
      */
 
     public function getDateTimezone($time, $format, $timezone = 'America/New_York'){
-        $date = new \DateTime($time, new \DateTimeZone($timezone));
+        $date = new DateTime($time, new DateTimeZone($timezone));
         return $date->format($format);
     }
 

@@ -12,7 +12,6 @@ class ExpireTask extends Task{
     private $plugin;
 
     public function __construct(CellPE $plugin){
-        parent::__construct($plugin);
         $this->plugin = $plugin;
     }
 

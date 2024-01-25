@@ -11,7 +11,7 @@ use pocketmine\level\Position;
 
 use Bajan\CellPE\CellPE;
 
-class EventListener implements Listener{
+class EventListener implements Listener {
 
     /** @var CellPE */
     private $plugin;
@@ -20,7 +20,7 @@ class EventListener implements Listener{
     /** @var Position[] */
     private $pos2 = [];
 
-    public function __construct(CellPE $plugin){
+    public function __construct(CellPE $plugin) {
         $this->plugin = $plugin;
     }
 
@@ -28,8 +28,7 @@ class EventListener implements Listener{
      * @param PlayerInteractEvent $event
      * @priority MONITOR
      */
-
-    public function onInteract(PlayerInteractEvent $event){
+    public function onInteract(PlayerInteractEvent $event) {
         $p = $event->getPlayer();
         $block = $event->getBlock();
         if($this->plugin->getSession()->getSession($p->getName()) !== null) {
@@ -77,8 +76,7 @@ class EventListener implements Listener{
      * @param PlayerMoveEvent $event
      * @priority MONITOR
      */
-
-    public function onMove(PlayerMoveEvent $event){
+    public function onMove(PlayerMoveEvent $event) {
         $p = $event->getPlayer();
         if($this->plugin->getValue('allow.movement.other.cell') === true){
             return;
@@ -114,38 +112,7 @@ class EventListener implements Listener{
      * @param BlockBreakEvent $event
      * @priority MONITOR
      */
-
-    public function onBreak(BlockBreakEvent $event){
+    public function onBreak(BlockBreakEvent $event) {
         $p = $event->getPlayer();
         $block = $event->getBlock();
         $pos = new Position($block->getX(), $block->getY(), $block->getZ(), $block->getLevel());
-        if($cell = $this->plugin->getCellManager()->isInCell($pos)){
-            if(($cell->getOwner() == $p->getName()) || ($cell->isHelper($p->getName()) === true)){
-                $event->setCancelled(false);
-            }
-            else{
-                $event->setCancelled(true);
-            }
-        }
-    }
-
-    /**
-     * @param BlockPlaceEvent $event
-     * @priority MONITOR
-     */
-
-    public function onPlace(BlockPlaceEvent $event){
-        $p = $event->getPlayer();
-        $block = $event->getBlock();
-        $pos = new Position($block->getX(), $block->getY(), $block->getZ(), $block->getLevel());
-        if($cell = $this->plugin->getCellManager()->isInCell($pos)){
-            if(($cell->getOwner() == $p->getName()) || ($cell->isHelper($p->getName()) === true)){
-                $event->setCancelled(false);
-            }
-            else{
-                $event->setCancelled(true);
-            }
-        }
-    }
-
-}

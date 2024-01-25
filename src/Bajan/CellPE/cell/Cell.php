@@ -5,9 +5,8 @@ namespace Bajan\CellPE\cell;
 use pocketmine\Player;
 use pocketmine\Server;
 use pocketmine\level\Position;
-use pocketmine\math\Vector3;
 
-class Cell{
+class Cell {
 
     /** @var string */
     private $name;
@@ -19,14 +18,13 @@ class Cell{
     private $z2;
     private $level;
     private $price;
-    /** @var string */
+    /** @var string|null */
     private $owner = null;
     /** @var array */
     private $helpers = [];
     private $days;
 
-
-    public function __construct($name, $date, $x1, $x2, $y, $z1, $z2, $level, $price, $days){
+    public function __construct(string $name, string $date, int $x1, int $x2, int $y, int $z1, int $z2, string $level, float $price, int $days) {
         $this->name = $name;
         $this->date = $date;
         $this->x1 = $x1;
@@ -39,123 +37,65 @@ class Cell{
         $this->days = $days;
     }
 
-    public function getName(){
+    public function getName(): string {
         return $this->name;
     }
 
-    public function getX1(){
+    public function getX1(): int {
         return $this->x1;
     }
 
-    public function getX2(){
+    public function getX2(): int {
         return $this->x2;
     }
 
-    public function getY(){
+    public function getY(): int {
         return $this->y;
     }
 
-    public function getZ1(){
+    public function getZ1(): int {
         return $this->z1;
     }
 
-    public function getZ2(){
+    public function getZ2(): int {
         return $this->z2;
     }
 
-    public function getOwner(){
+    public function getOwner(): ?string {
         return $this->owner;
     }
 
-    public function setOwner($owner){
+    public function setOwner(string $owner): void {
         $this->owner = $owner;
     }
 
-    public function getHelpers(){
+    public function getHelpers(): array {
         return $this->helpers;
     }
 
-    public function addHelper($helper){
+    public function addHelper(string $helper): void {
         $this->helpers[$helper] = $helper;
     }
 
-    public function removeHelper($helper){
+    public function removeHelper(string $helper): void {
         unset($this->helpers[$helper]);
     }
 
-    public function isHelper($name){
-        if(isset($this->helpers[$name])){
-            return true;
-        }
-        return false;
+    public function isHelper(string $name): bool {
+        return isset($this->helpers[$name]);
     }
 
-    public function getDate(){
+    public function getDate(): string {
         return $this->date;
     }
 
-    public function getLevel(){
+    public function getLevel(): string {
         return $this->level;
     }
 
-    public function getPrice(){
+    public function getPrice(): float {
         return $this->price;
     }
 
-    public function setPrice($price){
-        $this->price = $price;
-    }
+    public function setPrice(float
 
-    public function getDays(){
-        return $this->days;
-    }
-
-    public function addDays($amount){
-        $this->days += $amount;
-    }
-
-    public function reduceDays($amount){
-        $this->days -= $amount;
-    }
-
-    public function getPosition(){
-        return new Position($this->x1, $this->y, $this->z1, Server::getInstance()->getLevelByName($this->level));
-    }
-
-    public function teleport(Player $p){
-        $p->teleport($this->getPosition());
-    }
-
-    public function teleportToCentre(Player $p){
-        $p->teleport($this->getCentre());
-    }
-
-    public function isInCell(Position $pos){
-        if(
-            (min($this->x1, $this->x2) <= $pos->getX())
-            && (max($this->x1, $this->x2) >= $pos->getX())
-            && (min($this->z1, $this->z2) <= $pos->getZ())
-            && (max($this->z1, $this->z2) >= $pos->getZ())
-            && ($this->level == $pos->getLevel()->getName())
-        ){
-            return true;
-        }
-        return false;
-    }
-
-    public function getCentre(){
-        $minX = min($this->x1, $this->x2);
-        $maxX = max($this->x1, $this->x2);
-        $minZ = min($this->z1, $this->z2);
-        $maxZ = max($this->z1, $this->z2);
-        $resultX = ($minX / 2) + ($maxX / 2);
-        $resultZ = ($minZ / 2) + ($maxZ / 2);
-        return new Position($resultX, $this->y, $resultZ, Server::getInstance()->getLevelByName($this->level));
-    }
-
-    public function reset(){
-        $this->owner = null;
-        $this->helpers = [];
-    }
-
-}

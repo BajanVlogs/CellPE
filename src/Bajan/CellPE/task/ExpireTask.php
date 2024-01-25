@@ -3,6 +3,7 @@
 namespace Bajan\CellPE\task;
 
 use pocketmine\scheduler\Task;
+use pocketmine\scheduler\ExpireTask;
 
 use Bajan\CellPE\CellPE;
 

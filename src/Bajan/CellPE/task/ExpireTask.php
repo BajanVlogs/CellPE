@@ -1,24 +1,20 @@
-<?php
-
 namespace Bajan\CellPE\task;
 
 use pocketmine\scheduler\Task;
-use pocketmine\scheduler\ExpireTask;
 
 use Bajan\CellPE\CellPE;
 
-class ExpireTask extends Task{
+class ExpireTask extends Task {
 
-    /** @var CellPE  */
+    /** @var CellPE */
     private $plugin;
 
-    public function __construct(CellPE $plugin){
-        parent::__construct($plugin);
+    public function __construct(CellPE $plugin) {
         $this->plugin = $plugin;
     }
 
-    public function onRun(int $tick){
-        if($this->plugin->getCellManager()->getCells() != null) {
+    public function onRun(int $tick) {
+        if($this->plugin->getCellManager()->getCells() !== null) {
             foreach($this->plugin->getCellManager()->getCells() as $key => $value) {
                 $firstDate = date_create($value->getDate());
                 $secondDate = date_create($this->plugin->getDateTimezone('now', "Y-m-d"));
@@ -29,5 +25,4 @@ class ExpireTask extends Task{
             }
         }
     }
-
 }

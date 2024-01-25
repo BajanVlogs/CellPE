@@ -41,61 +41,15 @@ class Cell {
         return $this->name;
     }
 
-    public function getX1(): int {
-        return $this->x1;
-    }
-
-    public function getX2(): int {
-        return $this->x2;
-    }
-
-    public function getY(): int {
-        return $this->y;
-    }
-
-    public function getZ1(): int {
-        return $this->z1;
-    }
-
-    public function getZ2(): int {
-        return $this->z2;
-    }
-
-    public function getOwner(): ?string {
-        return $this->owner;
-    }
-
-    public function setOwner(string $owner): void {
-        $this->owner = $owner;
-    }
-
-    public function getHelpers(): array {
-        return $this->helpers;
-    }
-
-    public function addHelper(string $helper): void {
-        $this->helpers[$helper] = $helper;
-    }
-
-    public function removeHelper(string $helper): void {
-        unset($this->helpers[$helper]);
-    }
-
-    public function isHelper(string $name): bool {
-        return isset($this->helpers[$name]);
-    }
-
-    public function getDate(): string {
-        return $this->date;
-    }
-
-    public function getLevel(): string {
-        return $this->level;
-    }
+    // ... (other methods)
 
     public function getPrice(): float {
         return $this->price;
     }
 
-    public function setPrice(float
+    public function setPrice(float $price): void {
+        $this->price = $price;
+    }
 
+    // ... (other methods)
+}

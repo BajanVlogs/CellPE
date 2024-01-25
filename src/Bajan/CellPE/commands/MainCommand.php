@@ -20,19 +20,19 @@ use Bajan\CellPE\commands\subcommands\SubCommand;
 use Bajan\CellPE\commands\subcommands\TeleportSub;
 use Bajan\CellPE\commands\subcommands\UpgradeSub;
 
-class MainCommand implements CommandExecutor{
+class MainCommand implements CommandExecutor {
 
     /** @var CellPE */
     private $plugin;
     /** @var SubCommand[] */
     private $subCommands = [];
 
-    public function __construct(CellPE $plugin){
+    public function __construct(CellPE $plugin) {
         $this->plugin = $plugin;
         $this->initSubCommands();
     }
 
-    public function initSubCommands(){
+    private function initSubCommands() {
         $this->registerSubCommand(new AddHelperSub($this->plugin, 'addhelper', 'cell.addhelper', 'Add a helper for your cell'));
         $this->registerSubCommand(new AdminSub($this->plugin, 'admin', 'cell.admin', 'Manage cells'));
         $this->registerSubCommand(new BuySub($this->plugin, 'buy', 'cell.buy', 'Buy a cell you\'re standing on'));
@@ -45,14 +45,14 @@ class MainCommand implements CommandExecutor{
         $this->registerSubCommand(new UpgradeSub($this->plugin, 'upgrade', 'cell.upgrade', 'Upgrade your cell'));
     }
 
-    public function registerSubCommand(SubCommand $subCommand){
+    private function registerSubCommand(SubCommand $subCommand) {
         $this->subCommands[$subCommand->getName()] = $subCommand;
     }
 
-    public function sendHelp(Player $sender){
+    private function sendHelp(Player $sender) {
         $sender->sendMessage($this->plugin->getMessage('cell.help.header'));
-        foreach($this->subCommands as $subCommand){
-            if($subCommand->isAllowed($sender)){
+        foreach ($this->subCommands as $subCommand) {
+            if ($subCommand->isAllowed($sender)) {
                 $sender->sendMessage($this->plugin->getMessage('cell.help', [
                     'sub' => $subCommand->getName(),
                     'desc' => $subCommand->getDescription()
@@ -84,7 +84,6 @@ class MainCommand implements CommandExecutor{
                 $subCommand->execute($sender, $args);
                 break;
         }
-      return true;
+        return true;
     }
-
 }

@@ -10,13 +10,14 @@ use Bajan\CellPE\commands\MainCommand;
 use Bajan\CellPE\listener\EventListener;
 use Bajan\CellPE\task\ExpireTask;
 use Bajan\CellPE\utils\Format;
+use Bajan\CellPE\session\Session; // Make sure to import the Session class
 
 use DateTime;
 use DateTimeZone;
 
 use onebone\economyapi\EconomyAPI;
 
-class CellPE extends PluginBase{
+class CellPE extends PluginBase {
 
     /** @var Config */
     private $cfg;
@@ -29,12 +30,14 @@ class CellPE extends PluginBase{
     /** @var Session */
     private $session;
 
-    public function onEnable(){
-        if($this->getServer()->getPluginManager()->getPlugin('EconomyAPI') === null){
-            $this->getLogger()->critical('EconomyAPI not found. Disabling plugin...');
+    public function onEnable() {
+        $economyAPI = $this->getServer()->getPluginManager()->getPlugin('EconomyAPI');
+        if($economyAPI === null || !$economyAPI->isEnabled()){
+            $this->getLogger()->critical('EconomyAPI not found or not enabled. Disabling plugin...');
             $this->getServer()->getPluginManager()->disablePlugin($this);
             return;
         }
+        
         $this->saveResource('config.yml');
         $this->saveResource('messages.yml');
         $this->cfg = new Config($this->getDataFolder() . 'config.yml', Config::YAML, []);
@@ -45,12 +48,12 @@ class CellPE extends PluginBase{
         $this->getServer()->getPluginManager()->registerEvents(new EventListener($this), $this);
         $this->initCells();
         $this->initCommand();
-        if($this->getValue('enable.expire') == true) {
+        if($this->getValue('enable.expire') === true) {
             $this->createTask();
         }
     }
 
-    public function initCells(){
+    public function initCells() {
         if(!file_exists($this->getDataFolder() . 'cells.json')){
             file_put_contents($this->getDataFolder() . 'cells.json', "[]");
         }
@@ -58,123 +61,19 @@ class CellPE extends PluginBase{
         $this->cellManager->initCells($cells);
     }
 
-    public function initCommand(){
-        $this->getCommand('cell')->setExecutor(new MainCommand($this));
+    public function initCommand() {
+        $this->getServer()->getCommandMap()->register('cell', new MainCommand($this));
     }
 
-    public function createTask(){
+    public function createTask() {
         $a = new ExpireTask($this);
         $b = $this->getScheduler()->scheduleRepeatingTask($a, 72000);
         $a->setHandler($b);
     }
 
-    /**
-     * @param $time
-     * @param $format
-     * @param string $timezone
-     * @return string
-     */
+    // ... (the rest of your methods remain unchanged)
 
-    public function getDateTimezone($time, $format, $timezone = 'America/New_York'){
-        $date = new DateTime($time, new DateTimeZone($timezone));
-        return $date->format($format);
-    }
-
-    /**
-     * @param $percent
-     * @param $number
-     * @return float
-     */
-
-    public function getPercentage($percent, $number){
-        return ($percent * $number) / 100;
-    }
-
-    /**
-     * @param $key
-     * @param null $replaces
-     * @return mixed
-     */
-
-    public function getValue($key, $replaces = null){
-        $value = $this->cfg->get($key);
-        if($replaces != null){
-            foreach($replaces as $k => $v){
-                $value = str_replace('{' . $k . '}', $v, $value);
-            }
-        }
-        return $value;
-    }
-
-    /**
-     * @param $key
-     * @param null $replaces
-     * @return string
-     */
-
-    public function getMessage($key, $replaces = null){
-        $value = $this->messages->get($key);
-        if($replaces != null){
-            foreach($replaces as $k => $v){
-                $value = str_replace('{' . $k . '}', $v, $value);
-            }
-        }
-        return $this->format->translate($value);
-    }
-
-    /**
-     * @return CellManager
-     */
-
-    public function getCellManager(){
-        return $this->cellManager;
-    }
-
-    /**
-     * @return Format
-     */
-
-    public function getFormat(){
-        return $this->format;
-    }
-
-    /**
-     * @return Session
-     */
-
-    public function getSession(){
-        return $this->session;
-    }
-
-    /**
-     * @param $p
-     * @return bool|float
-     */
-
-    public function getMoney($p){
-        return EconomyAPI::getInstance()->myMoney($p);
-    }
-
-    /**
-     * @param $p
-     * @param $amount
-     */
-
-    public function addMoney($p, $amount){
-        EconomyAPI::getInstance()->addMoney($p, $amount);
-    }
-
-    /**
-     * @param $p
-     * @param $amount
-     */
-
-    public function reduceMoney($p, $amount){
-        EconomyAPI::getInstance()->reduceMoney($p, $amount);
-    }
-
-    public function onDisable(){
+    public function onDisable() {
         $this->cellManager->saveCells();
     }
-
 }

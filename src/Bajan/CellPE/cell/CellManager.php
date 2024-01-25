@@ -7,42 +7,47 @@ use pocketmine\level\Position;
 
 use Bajan\CellPE\CellPE;
 
-class CellManager{
+class CellManager {
 
     /** @var CellPE */
     private $plugin;
     /** @var Cell[] */
     private $cells = [];
 
-    public function __construct(CellPE $plugin){
+    public function __construct(CellPE $plugin) {
         $this->plugin = $plugin;
     }
 
-    public function initCells($cells){
-        if($cells == null){
+    public function initCells(?array $cells): void {
+        if ($cells === null) {
             return;
         }
-        foreach($cells as $key => $value){
+
+        foreach ($cells as $key => $value) {
             $this->createCell($key, $value['date'], $value['x1'], $value['x2'], $value['y'], $value['z1'], $value['z2'], $value['level'], $value['price'], $value['days']);
-            if($value['owner'] != null){
+
+            if ($value['owner'] !== null) {
                 $this->getCell($key)->setOwner($value['owner']);
             }
-            if($value['helpers'] != null){
-                $helpers = (array) $value['helpers'];
-                foreach($helpers as $helper){
+
+            if ($value['helpers'] !== null) {
+                $helpers = (array)$value['helpers'];
+
+                foreach ($helpers as $helper) {
                     $this->getCell($key)->addHelper($helper);
                 }
             }
         }
     }
 
-    public function saveCells(){
-        if($this->cells == null){
+    public function saveCells(): void {
+        if ($this->cells === null) {
             file_put_contents($this->plugin->getDataFolder() . 'cells.json', "[]");
             return;
         }
+
         $cells = [];
-        foreach($this->cells as $key => $value){
+        foreach ($this->cells as $key => $value) {
             $cells[$key] = [
                 'date' => $value->getDate(),
                 'x1' => $value->getX1(),
@@ -54,9 +59,10 @@ class CellManager{
                 'price' => $value->getPrice(),
                 'days' => $value->getDays(),
                 'owner' => $value->getOwner(),
-                'helpers' => $value->getHelpers()
+                'helpers' => $value->getHelpers(),
             ];
         }
+
         file_put_contents($this->plugin->getDataFolder() . 'cells.json', json_encode($cells));
     }
 
@@ -64,98 +70,92 @@ class CellManager{
      * @param Position $pos
      * @return bool|null|Cell
      */
-
-    public function isInCell(Position $pos){
-        if($this->cells == null){
+    public function isInCell(Position $pos) {
+        if ($this->cells === null) {
             return null;
         }
-        foreach($this->cells as $cell){
-            if($cell->isInCell($pos)){
+
+        foreach ($this->cells as $cell) {
+            if ($cell->isInCell($pos)) {
                 return $cell;
             }
         }
+
         return false;
     }
 
     /**
      * @param Position $pos
-     * @param Player $p
+     * @param Player $player
      * @return bool|null
      */
-
-    public function isInOwnCell(Position $pos, Player $p){
-        if($this->cells == null){
+    public function isInOwnCell(Position $pos, Player $player) {
+        if ($this->cells === null) {
             return null;
         }
-        foreach($this->cells as $cell){
-            if($cell->isInCell($pos)){
-                if(($cell->getOwner() != null) && (strtolower($cell->getOwner()) == strtolower($p->getName()))){
+
+        foreach ($this->cells as $cell) {
+            if ($cell->isInCell($pos)) {
+                if (($cell->getOwner() !== null) && (strtolower($cell->getOwner()) == strtolower($player->getName()))) {
                     return true;
                 }
             }
         }
+
         return false;
     }
 
     /**
-     * @param $name
-     * @param $date
-     * @param $x1
-     * @param $x2
-     * @param $y
-     * @param $z1
-     * @param $z2
-     * @param $level
-     * @param $price
-     * @param $days
+     * @param string $name
+     * @param string $date
+     * @param int $x1
+     * @param int $x2
+     * @param int $y
+     * @param int $z1
+     * @param int $z2
+     * @param string $level
+     * @param float $price
+     * @param int|null $days
      */
-
-    public function createCell($name, $date, $x1, $x2, $y, $z1, $z2, $level, $price, $days = null){
-        if(($price == null) || ($price == '')){
+    public function createCell(string $name, string $date, int $x1, int $x2, int $y, int $z1, int $z2, string $level, float $price, ?int $days = null): void {
+        if (($price === null) || ($price === '')) {
             $price = $this->plugin->getValue('default.price');
         }
-        if($days == null){
-            $days = (int) $this->plugin->getValue('expire.days');
+
+        if ($days === null) {
+            $days = (int)$this->plugin->getValue('expire.days');
         }
+
         $this->cells[$name] = new Cell($name, $date, $x1, $x2, $y, $z1, $z2, $level, $price, $days);
     }
 
     /**
      * @return Cell[]
      */
-
-    public function getCells(){
+    public function getCells(): array {
         return $this->cells;
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return Cell
      */
-
-    public function getCell($name){
+    public function getCell(string $name): Cell {
         return $this->cells[$name];
     }
 
     /**
-     * @param $name
+     * @param string $name
      */
-
-    public function delCell($name){
+    public function delCell(string $name): void {
         unset($this->cells[$name]);
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return bool
      */
-
-    public function existCell($name){
-        if(isset($this->cells[$name])){
-            return true;
-        }
-        return false;
+    public function existCell(string $name): bool {
+        return isset($this->cells[$name]);
     }
-
-
 }
